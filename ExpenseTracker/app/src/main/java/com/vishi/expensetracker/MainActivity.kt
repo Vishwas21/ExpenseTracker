@@ -82,10 +82,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getExpensesDetails() {
+        val uid = FirebaseAuth.getInstance().currentUser!!.uid
+
         dbListner = databaseReference.collection("expenses")
             .whereEqualTo("day", mDay)
             .whereEqualTo("month", (mMonth!! + 1))
             .whereEqualTo("year", mYear!!)
+            .whereEqualTo("addedBy", uid)
 //            .orderBy("year", Query.Direction.DESCENDING)
 //            .orderBy("month", Query.Direction.ASCENDING)
 //            .orderBy("day", Query.Direction.ASCENDING)

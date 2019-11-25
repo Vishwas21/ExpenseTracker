@@ -3,13 +3,16 @@ package com.vishi.expensetracker
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
 import java.util.*
+
 
 class AddExpenseActivity : AppCompatActivity() {
 
@@ -81,12 +84,19 @@ class AddExpenseActivity : AppCompatActivity() {
     }
 
     private fun saveData(amount: Int, day: Int, month: Int, year: Int, description: String) {
+        var uid = FirebaseAuth.getInstance().currentUser!!.uid
+
+        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
+        val timestamp: String = simpleDateFormat.format(Date()).toString()
+
         var newExpense = hashMapOf(
             "amountSpent" to amount,
             "day" to day,
             "month" to month,
             "year" to year,
-            "description" to description
+            "description" to description,
+            "addedBy" to uid,
+            "timeAdded" to timestamp
         )
 
         databaseReference.collection("expenses")

@@ -8,4 +8,6 @@ class ExpenseDetails() {
     var month: Int = 0
     var year: Int = 0
     var description: String = ""
+    var addedBy: String = ""
+    var timeAdded: String = ""
 }
