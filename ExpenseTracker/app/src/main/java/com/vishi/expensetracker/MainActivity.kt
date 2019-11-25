@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private var mDay: Int? = 0
 
     val databaseReference: FirebaseFirestore = FirebaseFirestore.getInstance()
-    private lateinit var authReference: FirebaseAuth
+//    private lateinit var authReference: FirebaseAuth
     private lateinit var dbListner: ListenerRegistration
 
     private var expenseList: MutableList<ExpenseDetails> = mutableListOf()
@@ -38,22 +38,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 //        supportActionBar!!.hide()
 
-        authReference = FirebaseAuth.getInstance()
+//        authReference = FirebaseAuth.getInstance()
 
         mCal = Calendar.getInstance()
         mYear = mCal!!.get(Calendar.YEAR)
         mMonth = mCal!!.get(Calendar.MONTH)
         mDay = mCal!!.get(Calendar.DAY_OF_MONTH)
 
-        authReference.signInWithEmailAndPassword(email, password)
-            .addOnCompleteListener {task ->
-                if (task.isSuccessful) {
-                    Toast.makeText(this@MainActivity, "Login Successfull", Toast.LENGTH_LONG).show()
-                }
-                else {
-                    Toast.makeText(this@MainActivity, "Login Unsuccessfull", Toast.LENGTH_LONG).show()
-                }
-            }
+//        authReference.signInWithEmailAndPassword(email, password)
+//            .addOnCompleteListener {task ->
+//                if (task.isSuccessful) {
+//                    Toast.makeText(this@MainActivity, "Login Successfull", Toast.LENGTH_LONG).show()
+//                }
+//                else {
+//                    Toast.makeText(this@MainActivity, "Login Unsuccessfull", Toast.LENGTH_LONG).show()
+//                }
+//            }
 
         fab.setOnClickListener { _ ->
             var add = Intent(this@MainActivity, AddExpenseActivity::class.java)
