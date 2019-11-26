@@ -20,4 +20,8 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="string_expense_tracker">Expense Tracker</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="logout_shortcut_short_label">Logout</string>
+    <string name="logout_shortcut_long_label">Logout</string>
+    <string name="logout_disabled_message">Logout Disabled</string>
 </resources>
