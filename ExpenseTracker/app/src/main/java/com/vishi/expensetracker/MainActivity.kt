@@ -18,9 +18,6 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    private val email: String = "ytriveni21167@gmail.com"
-    private val password: String = "Admintriveni"
-
     private var mCal: Calendar? = null
     private var mYear: Int? = 0
     private var mMonth: Int? = 0
@@ -28,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     val databaseReference: FirebaseFirestore = FirebaseFirestore.getInstance()
 //    private lateinit var authReference: FirebaseAuth
-    private lateinit var dbListner: ListenerRegistration
+    private lateinit var dbListener: ListenerRegistration
 
     private var expenseList: MutableList<ExpenseDetails> = mutableListOf()
     private var mExpensesRecyclerView: RecyclerView? = null
@@ -73,7 +70,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        dbListner.remove()
+        dbListener.remove()
     }
 
     private fun setAdapterForView() {
@@ -84,7 +81,7 @@ class MainActivity : AppCompatActivity() {
     private fun getExpensesDetails() {
         val uid = FirebaseAuth.getInstance().currentUser!!.uid
 
-        dbListner = databaseReference.collection("expenses")
+        dbListener = databaseReference.collection("expenses")
             .whereEqualTo("day", mDay)
             .whereEqualTo("month", (mMonth!! + 1))
             .whereEqualTo("year", mYear!!)

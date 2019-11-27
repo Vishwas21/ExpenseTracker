@@ -9,5 +9,5 @@
         android:color="@color/colorWhite" />
 
     <corners
-        android:radius="10dp" />
+        android:radius="25dp" />
 </shape>

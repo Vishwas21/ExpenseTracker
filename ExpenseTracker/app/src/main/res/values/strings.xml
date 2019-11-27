@@ -24,4 +24,5 @@
     <string name="logout_shortcut_short_label">Logout</string>
     <string name="logout_shortcut_long_label">Logout</string>
     <string name="logout_disabled_message">Logout Disabled</string>
+    <string name="today_s_expenses_string">Today\'s Expenses</string>
 </resources>
