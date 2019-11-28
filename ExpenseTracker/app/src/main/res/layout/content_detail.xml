@@ -22,11 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:elevation="15dp"
         android:fontFamily="@font/alex_brush"
         android:text="@string/app_name"
         android:textColor="@color/colorWhite"
         android:textSize="35sp"
-        android:elevation="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +43,7 @@
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/id_top_view" >
+        app:layout_constraintTop_toTopOf="@+id/id_top_view">
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,9 +70,9 @@
                 android:layout_marginTop="8dp"
                 android:padding="1dp"
                 android:text="\u20B9 99.99"
-                android:textColor="#FF0012"
-                android:textStyle="bold"
+                android:textColor="@color/colorDangerRed"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/todayExpensesLabelId" />
@@ -83,12 +83,128 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:padding="2dp"
-                android:text="+  Add Expense"
+                android:text="@string/add_expense_string"
                 android:textColor="#D8AFA4A4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/totalDayExpensesId" />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/yesterdayExpensesCardId"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="18dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todayExpensesCardId">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/yesterdayExpenseLabelId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/advent_pro_semibold"
+                android:padding="1dp"
+                android:text="@string/yesterday_s_expenses_string"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/yesterdayNameLabelId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="2dp"
+                android:text="Yesterday Name"
+                android:textColor="#D8AFA4A4"
+                app:layout_constraintStart_toStartOf="@+id/yesterdayExpenseLabelId"
+                app:layout_constraintTop_toBottomOf="@+id/yesterdayExpenseLabelId" />
+
+            <TextView
+                android:id="@+id/totalYesterdayExpenseId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:padding="1dp"
+                android:text="\u20B9 99.99"
+                android:textColor="@color/colorDangerRed"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/monthExpensesCardId"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="18dp"
+        app:cardBackgroundColor="@color/colorWhite"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yesterdayExpensesCardId">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/monthlyExpenseLabelId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/advent_pro_semibold"
+                android:padding="1dp"
+                android:text="@string/monthly_expense_string"
+                android:textColor="@color/colorBlack"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/monthNameLabelId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:padding="2dp"
+                android:text="Month Name"
+                android:textColor="#D8AFA4A4"
+                app:layout_constraintStart_toStartOf="@+id/monthlyExpenseLabelId"
+                app:layout_constraintTop_toBottomOf="@+id/monthlyExpenseLabelId" />
+
+            <TextView
+                android:id="@+id/totalMonthlyExpenseId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:padding="1dp"
+                android:text="\u20B9 99.99"
+                android:textColor="@color/colorDangerRed"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

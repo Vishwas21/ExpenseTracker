@@ -25,4 +25,7 @@
     <string name="logout_shortcut_long_label">Logout</string>
     <string name="logout_disabled_message">Logout Disabled</string>
     <string name="today_s_expenses_string">Today\'s Expenses</string>
+    <string name="add_expense_string">+  Add Expense</string>
+    <string name="monthly_expense_string">Monthly Expense</string>
+    <string name="yesterday_s_expenses_string">Yesterday\'s Expenses</string>
 </resources>

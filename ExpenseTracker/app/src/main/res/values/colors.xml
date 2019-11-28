@@ -11,4 +11,8 @@
     <color name="colorCyan">#00ffff</color>
     <color name="colorTurquoise">#40E0D0</color>
     <color name="colorLightGray">#83D3D3D3</color>
+
+    <color name="colorSafeGreen">#14E715</color>
+    <color name="colorWarningOrange">#FFA836</color>
+    <color name="colorDangerRed">#FF0012</color>
 </resources>
