@@ -28,4 +28,5 @@
     <string name="add_expense_string">+  Add Expense</string>
     <string name="monthly_expense_string">Monthly Expense</string>
     <string name="yesterday_s_expenses_string">Yesterday\'s Expenses</string>
+    <string name="yearly_expense_string">Yearly Expense</string>
 </resources>

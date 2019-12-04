@@ -31,10 +31,15 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var totalDayExpense: TextView
     private lateinit var addExpenseButton: TextView
+
     private lateinit var yesterdayTotalExpense: TextView
     private lateinit var yesterdayNameLabel: TextView
+
     private lateinit var totalMonthExpense: TextView
     private lateinit var monthNameLabel: TextView
+
+    private lateinit var totalYearExpense: TextView
+    private lateinit var yearNumberLabel: TextView
 
     val databaseReference: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var dbListener: ListenerRegistration
@@ -71,6 +76,9 @@ class DetailActivity : AppCompatActivity() {
 
         totalMonthExpense = findViewById(R.id.totalMonthlyExpenseId)
         monthNameLabel = findViewById(R.id.monthNameLabelId)
+
+        totalYearExpense = findViewById(R.id.totalYearlyExpenseId)
+        yearNumberLabel = findViewById(R.id.yearNameLabelId)
 
         getExpensesDetails()
 
@@ -199,6 +207,19 @@ class DetailActivity : AppCompatActivity() {
         }
         else {
             totalMonthExpense.setTextColor(ContextCompat.getColor(this@DetailActivity, R.color.colorDangerRed))
+        }
+
+        totalYearExpense.text = "\u20B9" + String.format(Locale.ENGLISH, "%.2f", yearTotal)
+        yearNumberLabel.text = mYear!!.toString()
+
+        if (yearTotal <= 150000) {
+            totalYearExpense.setTextColor(ContextCompat.getColor(this@DetailActivity, R.color.colorSafeGreen))
+        }
+        else if (yearTotal/12 <= 250000) {
+            totalYearExpense.setTextColor(ContextCompat.getColor(this@DetailActivity, R.color.colorWarningOrange))
+        }
+        else {
+            totalYearExpense.setTextColor(ContextCompat.getColor(this@DetailActivity, R.color.colorDangerRed))
         }
     }
 
