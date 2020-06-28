@@ -8,7 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
@@ -16,6 +15,7 @@ import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import com.vishi.expensetracker.model.ExpenseDetails
 import java.text.SimpleDateFormat
+
 import java.util.*
 
 
@@ -74,7 +74,7 @@ class DetailActivity : AppCompatActivity() {
         addExpenseButton = findViewById(R.id.addExpenseButtonId)
         viewExpenseButton = findViewById(R.id.viewExpenseButtonId)
         addExpenseButton.isEnabled = false
-        viewExpenseButton.isEnabled = true
+        viewExpenseButton.isEnabled = false
 
         yesterdayTotalExpense = findViewById(R.id.totalYesterdayExpenseId)
         yesterdayNameLabel = findViewById(R.id.yesterdayNameLabelId)
@@ -95,6 +95,7 @@ class DetailActivity : AppCompatActivity() {
         viewExpenseButton.setOnClickListener {
             val view = Intent(this@DetailActivity, ViewActivity::class.java)
             startActivity(view)
+//            finish()
         }
 
         updateViews()
@@ -182,11 +183,13 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        totalDayExpense.text = "\u20B9" +  String.format(Locale.ENGLISH, "%.2f", dayTotal)
+        viewExpenseButton.isEnabled = dayTotal != 0.0
+
+        totalDayExpense.text = "\u20B9" + String.format(Locale.ENGLISH, "%.2f", dayTotal)
         addExpenseButton.isEnabled = true
 
         yesterdayTotalExpense.text = "\u20B9" + String.format(Locale.ENGLISH, "%.2f", yestDayTotal)
-        var suffix: String
+        val suffix: String
 
         if (mYestDay!! >= 11 && mYestDay!! <= 20) {
             suffix = "th"
@@ -234,7 +237,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun deleteExpense(deletedExpense: ExpenseDetails) {
-        var index: Int = 0
+        var index = 0
 
         for (exp in expenseList) {
             if (exp.id == deletedExpense.id) {
@@ -249,7 +252,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun updateExpense(modifiedExpense: ExpenseDetails) {
-        var index: Int = 0
+        var index = 0
 
         for (exp in expenseList) {
             if (exp.id == modifiedExpense.id) {

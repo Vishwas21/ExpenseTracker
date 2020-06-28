@@ -17,6 +17,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/homeButtonId"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/home_icon_square"
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textViewTopTextId"
         android:layout_width="wrap_content"
@@ -24,7 +36,7 @@
         android:layout_marginTop="28dp"
         android:elevation="15dp"
         android:fontFamily="@font/alex_brush"
-        android:text="Today's Expenses"
+        android:text="@string/today_s_expenses"
         android:textColor="@color/colorWhite"
         android:textSize="30sp"
         android:textStyle="bold"

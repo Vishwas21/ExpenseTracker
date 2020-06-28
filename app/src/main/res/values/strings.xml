@@ -34,4 +34,7 @@
     <string name="default_value_string">₹ 99.99</string>
     <string name="month_string">Month</string>
     <string name="year_string">Year</string>
+    <string name="today_s_expenses">Today\'s Expenses</string>
+    <string name="description_default_string">Description</string>
+    <string name="date_default_string">Date</string>
 </resources>

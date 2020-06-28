@@ -13,7 +13,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import java.sql.Timestamp
-import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -42,9 +41,9 @@ class AddExpenseActivity : AppCompatActivity() {
         mAuth = Firebase.auth
 
         val cal: Calendar = Calendar.getInstance()
-        var mYear = cal.get(Calendar.YEAR)
-        var mMonth = cal.get(Calendar.MONTH)
-        var mDay = cal.get(Calendar.DAY_OF_MONTH)
+        val mYear = cal.get(Calendar.YEAR)
+        val mMonth = cal.get(Calendar.MONTH)
+        val mDay = cal.get(Calendar.DAY_OF_MONTH)
 
         amountSpent = findViewById(R.id.editText_Amount)
         selectedDate = findViewById(R.id.editText_Date)
@@ -72,10 +71,10 @@ class AddExpenseActivity : AppCompatActivity() {
 
             if (amountSpent!!.text.toString() != "" && descriptionEditView!!.text.toString() != "") {
                 amount = amountSpent!!.text.toString().toInt()
-                var date = selectedDate!!.text.toString()
+                val date = selectedDate!!.text.toString()
                 description = descriptionEditView!!.text.toString()
 
-                var splitDate = date.split("/")
+                val splitDate = date.split("/")
                 day = splitDate[0].toInt()
                 month = splitDate[1].toInt()
                 year = splitDate[2].toInt()
@@ -90,20 +89,18 @@ class AddExpenseActivity : AppCompatActivity() {
     }
 
     private fun saveData(amount: Int, day: Int, month: Int, year: Int, description: String) {
-        var uid = Firebase.auth.currentUser!!.uid
+        val uid = Firebase.auth.currentUser!!.uid
 
-        val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd hh:mm:ss")
-        val timestamp: String = simpleDateFormat.format(Date()).toString()
-        val time: Date = Timestamp(System.currentTimeMillis())
+        val timestamp: Date = Timestamp(System.currentTimeMillis())
 
-        var newExpense = hashMapOf(
+        val newExpense = hashMapOf(
             "amountSpent" to amount,
             "day" to day,
             "month" to month,
             "year" to year,
             "description" to description,
             "addedBy" to uid,
-            "timeAdded" to time
+            "timeAdded" to timestamp
         )
 
         databaseReference.collection("expenses")

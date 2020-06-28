@@ -4,19 +4,19 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.*
+import com.google.firebase.firestore.DocumentChange
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
 import com.vishi.expensetracker.adapter.AllExpensesAdapter
 import com.vishi.expensetracker.model.ExpenseDetails
-
-import kotlinx.android.synthetic.main.activity_view.*
 import java.util.*
 
 class ViewActivity : AppCompatActivity() {
@@ -27,6 +27,7 @@ class ViewActivity : AppCompatActivity() {
     private var mDay: Int? = 0
 
     private lateinit var totalExpense: TextView
+    private lateinit var homeButton: Button
 
     val databaseReference: FirebaseFirestore = FirebaseFirestore.getInstance()
     private lateinit var dbListener: ListenerRegistration
@@ -44,11 +45,7 @@ class ViewActivity : AppCompatActivity() {
         mDay = mCal!!.get(Calendar.DAY_OF_MONTH)
 
         totalExpense = findViewById(R.id.textViewTopTotalId)
-
-        fab.setOnClickListener { _ ->
-            var add = Intent(this@ViewActivity, AddExpenseActivity::class.java)
-            startActivityForResult(add, ADD_EXPENSE_REQUEST)
-        }
+        homeButton = findViewById(R.id.homeButtonId)
 
         getExpensesDetails()
 
@@ -58,9 +55,16 @@ class ViewActivity : AppCompatActivity() {
 
         mExpensesRecyclerView!!.layoutManager = layoutManager
 
-        updateViews()
-
         setAdapterForView()
+
+        homeButton.setOnClickListener {
+            val home = Intent(this@ViewActivity, DetailActivity::class.java)
+            home.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            home.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(home)
+        }
+
+        updateViews()
     }
 
     override fun onDestroy() {
@@ -94,7 +98,7 @@ class ViewActivity : AppCompatActivity() {
                     for (dc in querySnapshot.documentChanges) {
                         when (dc.type) {
                             DocumentChange.Type.ADDED -> {
-                                var newExpense = dc.document.toObject(ExpenseDetails::class.java)
+                                val newExpense = dc.document.toObject(ExpenseDetails::class.java)
                                 newExpense.id = dc.document.id
 
                                 expenseList.add(newExpense)
@@ -103,7 +107,8 @@ class ViewActivity : AppCompatActivity() {
                             }
 
                             DocumentChange.Type.MODIFIED -> {
-                                var modifiedExpense = dc.document.toObject(ExpenseDetails::class.java)
+                                val modifiedExpense =
+                                    dc.document.toObject(ExpenseDetails::class.java)
                                 modifiedExpense.id = dc.document.id
 
                                 updateExpense(modifiedExpense)
@@ -112,7 +117,8 @@ class ViewActivity : AppCompatActivity() {
                             }
 
                             DocumentChange.Type.REMOVED -> {
-                                var deletedExpense = dc.document.toObject(ExpenseDetails::class.java)
+                                val deletedExpense =
+                                    dc.document.toObject(ExpenseDetails::class.java)
                                 deletedExpense.id = dc.document.id
 
                                 deleteExpense(deletedExpense)
@@ -137,7 +143,7 @@ class ViewActivity : AppCompatActivity() {
     }
 
     private fun deleteExpense(deletedExpense: ExpenseDetails) {
-        var index: Int = 0
+        var index = 0
 
         for (exp in expenseList) {
             if (exp.id == deletedExpense.id) {
@@ -152,7 +158,7 @@ class ViewActivity : AppCompatActivity() {
     }
 
     private fun updateExpense(modifiedExpense: ExpenseDetails) {
-        var index: Int = 0
+        var index = 0
 
         for (exp in expenseList) {
             if (exp.id == modifiedExpense.id) {
