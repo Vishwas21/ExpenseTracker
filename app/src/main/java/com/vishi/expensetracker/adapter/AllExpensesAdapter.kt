@@ -8,6 +8,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.vishi.expensetracker.R
 import com.vishi.expensetracker.model.ExpenseDetails
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
 import kotlin.math.pow
 import kotlin.math.sqrt
@@ -27,16 +30,16 @@ class AllExpensesAdapter(private val mExpensesList: List<ExpenseDetails>?) :Recy
     }
 
     fun getAvg() {
-        var total: Double = 0.0
-        var totalStdDev: Double = 0.0
+        var total = 0.0
+        var totalStdDev = 0.0
 
         for (expense in mExpensesList!!) {
             total += expense.amountSpent
         }
 
-        mAvg = total/mExpensesList.size
+        mAvg = total / mExpensesList.size
 
-        for (expense in mExpensesList!!) {
+        for (expense in mExpensesList) {
             totalStdDev += (mAvg - expense.amountSpent).pow(2)
         }
 
@@ -52,7 +55,11 @@ class AllExpensesAdapter(private val mExpensesList: List<ExpenseDetails>?) :Recy
 
         getAvg()
 
-        (holder as ExpenseViewHolder).setExpenseDetails(expense!!, desc!!, day!!, month!!, year!!, mAvg!!, mStdDev!!)
+        (holder as ExpenseViewHolder).setExpenseDetails(
+            expense!!, desc!!, day!!, month!!, year!!,
+            mAvg,
+            mStdDev
+        )
     }
 
     internal inner class ExpenseViewHolder(expenseView: View) : RecyclerView.ViewHolder(expenseView) {
@@ -68,17 +75,17 @@ class AllExpensesAdapter(private val mExpensesList: List<ExpenseDetails>?) :Recy
         }
 
         internal fun setExpenseDetails(expense: Double, desc: String, day: Int, month: Int, year: Int, avg: Double, stdDev: Double) {
-            amountSpent.text = "\u20B9 " +  String.format(Locale.ENGLISH, "%.2f", expense)
+            amountSpent.text = "\u20B9 " + String.format(Locale.ENGLISH, "%.2f", expense)
             description.text = desc
-            date.text = "" + day + "-" + month + "-" + year + ""
+            date.text = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
+                .format(LocalDate.of(year, month, day))
+
 
             if (expense > (avg + stdDev)) {
                 amountSpent.setTextColor(Color.parseColor("#FF0012"))
-            }
-            else if (expense < (avg - stdDev)) {
+            } else if (expense < (avg - stdDev)) {
                 amountSpent.setTextColor(Color.parseColor("#14E715"))
-            }
-            else {
+            } else {
                 amountSpent.setTextColor(Color.parseColor("#FFA836"))
             }
         }

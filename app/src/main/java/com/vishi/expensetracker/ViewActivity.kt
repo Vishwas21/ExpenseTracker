@@ -26,6 +26,7 @@ class ViewActivity : AppCompatActivity() {
     private var mMonth: Int? = 0
     private var mDay: Int? = 0
 
+    private lateinit var topTextView: TextView
     private lateinit var totalExpense: TextView
     private lateinit var homeButton: Button
 
@@ -39,13 +40,17 @@ class ViewActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
 
-        mCal = Calendar.getInstance()
-        mYear = mCal!!.get(Calendar.YEAR)
-        mMonth = mCal!!.get(Calendar.MONTH)
-        mDay = mCal!!.get(Calendar.DAY_OF_MONTH)
+        val bundle: Bundle? = intent.extras
 
+        mYear = bundle!!.getInt("year")
+        mMonth = bundle.getInt("month")
+        mDay = bundle.getInt("day")
+
+        topTextView = findViewById(R.id.textViewTopTextId)
         totalExpense = findViewById(R.id.textViewTopTotalId)
         homeButton = findViewById(R.id.homeButtonId)
+
+        topTextView.text = "Day Expenses"
 
         getExpensesDetails()
 
