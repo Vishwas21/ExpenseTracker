@@ -3,14 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
     android:layout_marginStart="16dp"
+    android:layout_marginTop="5dp"
     android:layout_marginEnd="16dp"
+    android:layout_marginBottom="5dp"
     android:background="@drawable/expense_background"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground"
     android:elevation="3dp"
+    android:foreground="?android:attr/selectableItemBackground"
     android:paddingTop="4dp"
     android:paddingBottom="16dp">
 

@@ -7,7 +7,7 @@
     <string name="label_date">Date :</string>
     <string name="hint_select_date">Select Date</string>
     <string name="label_description">Description :</string>
-    <string name="hint_description">Enter expenditure description</string>
+    <string name="hint_description">Enter description</string>
     <string name="button_label_save">Add Expense</string>
 
     <string name="title_activity_login">Sign in</string>
@@ -37,4 +37,5 @@
     <string name="today_s_expenses">Today\'s Expenses</string>
     <string name="description_default_string">Description</string>
     <string name="date_default_string">Date</string>
+    <string name="splash_image_content_description">The Expense Tracker App Icon</string>
 </resources>
