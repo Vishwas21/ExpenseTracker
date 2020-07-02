@@ -7,7 +7,7 @@
     <string name="label_date">Date :</string>
     <string name="hint_select_date">Select Date</string>
     <string name="label_description">Description :</string>
-    <string name="hint_description">Enter expense description</string>
+    <string name="hint_description">Enter description</string>
     <string name="button_label_save">Add Expense</string>
 
     <string name="title_activity_login">Sign in</string>
