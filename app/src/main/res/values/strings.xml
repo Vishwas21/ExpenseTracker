@@ -37,4 +37,5 @@
     <string name="today_s_expenses">Today\'s Expenses</string>
     <string name="description_default_string">Description</string>
     <string name="date_default_string">Date</string>
+    <string name="splash_image_content_description">The Expense Tracker App Icon</string>
 </resources>
