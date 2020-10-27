@@ -1,4 +1,4 @@
-package com.vishi.expensetracker
+package com.vishi.expensetracker.activity
 
 import android.content.Intent
 import android.os.Bundle

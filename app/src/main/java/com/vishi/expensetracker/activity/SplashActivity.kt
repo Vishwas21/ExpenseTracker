@@ -1,8 +1,9 @@
-package com.vishi.expensetracker
+package com.vishi.expensetracker.activity
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.vishi.expensetracker.R
 import io.paperdb.Paper
 
 class SplashActivity : AppCompatActivity() {
@@ -49,7 +51,7 @@ class SplashActivity : AppCompatActivity() {
             loginToFirebase()
         }
         else {
-            Handler().postDelayed({
+            Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                 finish()
             }, SPLASH_TIME_OUT)
@@ -64,14 +66,14 @@ class SplashActivity : AppCompatActivity() {
 
                 if (it.isSuccessful) {
                     Toast.makeText(this@SplashActivity, "Login Successfull", Toast.LENGTH_LONG).show()
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         val intent = Intent(this@SplashActivity, DetailActivity::class.java)
                         startActivity(intent)
                         finish()
                     }, SPLASH_TIME_OUT)
                 }
                 else {
-                    Handler().postDelayed({
+                    Handler(Looper.getMainLooper()).postDelayed({
                         startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
                         finish()
                     }, SPLASH_TIME_OUT)

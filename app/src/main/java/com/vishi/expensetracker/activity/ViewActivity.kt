@@ -1,4 +1,4 @@
-package com.vishi.expensetracker
+package com.vishi.expensetracker.activity
 
 import android.app.Activity
 import android.content.Intent
@@ -15,6 +15,7 @@ import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
 import com.google.firebase.ktx.Firebase
+import com.vishi.expensetracker.R
 import com.vishi.expensetracker.adapter.AllExpensesAdapter
 import com.vishi.expensetracker.model.ExpenseDetails
 import java.util.*

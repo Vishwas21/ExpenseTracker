@@ -11,9 +11,9 @@
     <string name="button_label_save">Add Expense</string>
 
     <string name="title_activity_login">Sign in</string>
-    <string name="prompt_email">Email</string>
+    <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in</string>
+    <string name="action_log_in">Login</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
@@ -38,4 +38,8 @@
     <string name="description_default_string">Description</string>
     <string name="date_default_string">Date</string>
     <string name="splash_image_content_description">The Expense Tracker App Icon</string>
+    <string name="forgot_password_string">Forgot Password?</string>
+    <string name="or_label_string">OR</string>
+    <string name="create_account_string">Create Account</string>
+    <string name="expense_tracker_login_image_string">Expense Tracker Login Image</string>
 </resources>

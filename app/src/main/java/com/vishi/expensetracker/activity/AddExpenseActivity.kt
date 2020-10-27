@@ -1,4 +1,4 @@
-package com.vishi.expensetracker
+package com.vishi.expensetracker.activity
 
 import android.app.Activity
 import android.app.DatePickerDialog
@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.vishi.expensetracker.R
 import java.sql.Timestamp
 import java.util.*
 
@@ -57,11 +58,12 @@ class AddExpenseActivity : AppCompatActivity() {
 
             Toast.makeText(this@AddExpenseActivity, "Here", Toast.LENGTH_LONG).show()
 
-            datePickerDialog = DatePickerDialog(this@AddExpenseActivity, DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
-//                selectedDate!!.text = "" + dayOfMonth + "-" + (month + 1) + "-" + year
-                selectedDate!!.setText("" + dayOfMonth + "/" + (month + 1) + "/" + year)
-                selectedDate!!.isEnabled = true
-            }, mYear, mMonth, mDay)
+            datePickerDialog = DatePickerDialog(this@AddExpenseActivity,
+                { _, year, month, dayOfMonth ->
+    //                selectedDate!!.text = "" + dayOfMonth + "-" + (month + 1) + "-" + year
+                    selectedDate!!.setText("" + dayOfMonth + "/" + (month + 1) + "/" + year)
+                    selectedDate!!.isEnabled = true
+                }, mYear, mMonth, mDay)
 
             datePickerDialog!!.show()
         }

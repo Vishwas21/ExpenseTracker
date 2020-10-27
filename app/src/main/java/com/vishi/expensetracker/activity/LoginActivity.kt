@@ -1,26 +1,27 @@
-package com.vishi.expensetracker
+package com.vishi.expensetracker.activity
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.vishi.expensetracker.R
 import io.paperdb.Paper
 
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var username: EditText
-    private lateinit var password: EditText
+    private lateinit var username: TextInputEditText
+    private lateinit var password: TextInputEditText
     private lateinit var login: Button
-    private lateinit var loading: ProgressBar
+    private lateinit var progressBar: ProgressBar
 
     //String Values
     private lateinit var txtUsername: String
@@ -36,24 +37,30 @@ class LoginActivity : AppCompatActivity() {
 
         firebaseAuth = Firebase.auth
 
-        username = findViewById(R.id.username)
-        password = findViewById(R.id.password)
-        login = findViewById(R.id.login)
-        loading = findViewById(R.id.loading)
+        username = findViewById(R.id.usernameTextInputEditTextId)
+        password = findViewById(R.id.passwordTextInputEditTextId)
+        login = findViewById(R.id.loginButtonId)
+        progressBar = findViewById(R.id.progressBarId)
 
         login.setOnClickListener {
+            login.text = ""
             login.isEnabled = false
+            progressBar.visibility = View.VISIBLE
 
             txtUsername = username.text.toString()
             txtPassword = password.text.toString()
 
             if (txtUsername.isEmpty()) {
                 Toast.makeText(this@LoginActivity, "Please enter a valid email id!", Toast.LENGTH_LONG).show()
+                login.text = getString(R.string.action_log_in)
                 login.isEnabled = true
+                progressBar.visibility = View.INVISIBLE
             }
             else if (txtPassword.isEmpty()) {
                 Toast.makeText(this@LoginActivity, "Please enter a valid password!", Toast.LENGTH_LONG).show()
+                login.text = getString(R.string.action_log_in)
                 login.isEnabled = true
+                progressBar.visibility = View.INVISIBLE
             }
             else {
                 loginToFirebase()
@@ -80,7 +87,9 @@ class LoginActivity : AppCompatActivity() {
                 else {
                     password.setText("")
                     Toast.makeText(this@LoginActivity, "Login Unsuccessfull", Toast.LENGTH_LONG).show()
+                    login.text = getString(R.string.action_log_in)
                     login.isEnabled = true
+                    progressBar.visibility = View.INVISIBLE
                 }
             }
     }
