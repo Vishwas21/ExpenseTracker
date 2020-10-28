@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.vishi.expensetracker.R
+import com.vishi.expensetracker.utility.FireStoreUtil
 import io.paperdb.Paper
 
 
@@ -28,14 +28,15 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var txtPassword: String
 
     //Firebase
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var mFirebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_login)
 
-        firebaseAuth = Firebase.auth
+        FireStoreUtil.onFirebaseAuth()
+        mFirebaseAuth = FireStoreUtil.mFirebaseAuth!!
 
         username = findViewById(R.id.usernameTextInputEditTextId)
         password = findViewById(R.id.passwordTextInputEditTextId)
@@ -71,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
     private fun loginToFirebase() {
 
         //Authentication
-        firebaseAuth.signInWithEmailAndPassword(txtUsername, txtPassword)
+        mFirebaseAuth.signInWithEmailAndPassword(txtUsername, txtPassword)
             .addOnCompleteListener {
 
                 if (it.isSuccessful) {

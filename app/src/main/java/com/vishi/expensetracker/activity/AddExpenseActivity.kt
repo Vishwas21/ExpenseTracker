@@ -13,6 +13,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.vishi.expensetracker.R
+import com.vishi.expensetracker.utility.FireStoreUtil
 import java.sql.Timestamp
 import java.util.*
 
@@ -33,13 +34,17 @@ class AddExpenseActivity : AppCompatActivity() {
     var description: String? = null
 
     private lateinit var mAuth: FirebaseAuth
-    val databaseReference: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var mDatabaseReference: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_expense)
+        
+        FireStoreUtil.onFirebaseAuth()
+        FireStoreUtil.onFireStoreReference()
 
-        mAuth = Firebase.auth
+        mDatabaseReference = FireStoreUtil.mFireStoreDatabaseReference!!
+        mAuth = FireStoreUtil.mFirebaseAuth!!
 
         val cal: Calendar = Calendar.getInstance()
         val mYear = cal.get(Calendar.YEAR)
@@ -105,7 +110,7 @@ class AddExpenseActivity : AppCompatActivity() {
             "timeAdded" to timestamp
         )
 
-        databaseReference.collection("expenses")
+        mDatabaseReference.collection("expenses")
             .add(newExpense)
             .addOnSuccessListener {
                 intent = Intent()

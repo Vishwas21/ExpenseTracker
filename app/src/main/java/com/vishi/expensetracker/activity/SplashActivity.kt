@@ -10,9 +10,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.vishi.expensetracker.R
+import com.vishi.expensetracker.utility.FireStoreUtil
 import io.paperdb.Paper
 
 class SplashActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
     private val SPLASH_TIME_OUT: Long = 1500
     private lateinit var txtUsername: String
     private lateinit var txtPassword: String
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var mFirebaseAuth: FirebaseAuth
 
     private lateinit var topConstraintLayout: ConstraintLayout
     private lateinit var bottomConstraintLayout: ConstraintLayout
@@ -41,7 +40,8 @@ class SplashActivity : AppCompatActivity() {
         topConstraintLayout.animation = topAnimation
         bottomConstraintLayout.animation = bottomAnimation
 
-        firebaseAuth = Firebase.auth
+        FireStoreUtil.onFirebaseAuth()
+        mFirebaseAuth = FireStoreUtil.mFirebaseAuth!!
         Paper.init(this@SplashActivity)
 
         if (Paper.book().contains("username") and Paper.book().contains("password")) {
@@ -61,7 +61,7 @@ class SplashActivity : AppCompatActivity() {
     private fun loginToFirebase() {
 
         //Authentication
-        firebaseAuth.signInWithEmailAndPassword(txtUsername, txtPassword)
+        mFirebaseAuth.signInWithEmailAndPassword(txtUsername, txtPassword)
             .addOnCompleteListener {
 
                 if (it.isSuccessful) {

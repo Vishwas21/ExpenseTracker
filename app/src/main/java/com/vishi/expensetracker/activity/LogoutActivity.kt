@@ -21,6 +21,9 @@ class LogoutActivity: AppCompatActivity() {
             FirebaseAuth.getInstance().signOut()
             Toast.makeText(this@LogoutActivity, "Logout Successful", Toast.LENGTH_LONG).show()
         }
+        else {
+            Toast.makeText(this@LogoutActivity, "User Already Logged Out!", Toast.LENGTH_LONG).show()
+        }
 
 //        startActivity(Intent(this@LogoutActivity, SplashActivity::class.java))
         finish()

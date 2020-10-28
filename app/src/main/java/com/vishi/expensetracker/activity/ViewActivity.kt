@@ -18,6 +18,7 @@ import com.google.firebase.ktx.Firebase
 import com.vishi.expensetracker.R
 import com.vishi.expensetracker.adapter.AllExpensesAdapter
 import com.vishi.expensetracker.model.ExpenseDetails
+import com.vishi.expensetracker.utility.FireStoreUtil
 import java.util.*
 
 class ViewActivity : AppCompatActivity() {
@@ -31,7 +32,7 @@ class ViewActivity : AppCompatActivity() {
     private lateinit var totalExpense: TextView
     private lateinit var homeButton: Button
 
-    val databaseReference: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var mFireStoreDatabaseReference: FirebaseFirestore
     private lateinit var dbListener: ListenerRegistration
 
     private var expenseList: MutableList<ExpenseDetails> = mutableListOf()
@@ -40,6 +41,9 @@ class ViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view)
+
+        FireStoreUtil.onFireStoreReference()
+        mFireStoreDatabaseReference = FireStoreUtil.mFireStoreDatabaseReference!!
 
         val bundle: Bundle? = intent.extras
 
@@ -86,7 +90,7 @@ class ViewActivity : AppCompatActivity() {
     private fun getExpensesDetails() {
         val uid = Firebase.auth.currentUser!!.uid
 
-        dbListener = databaseReference.collection("expenses")
+        dbListener = mFireStoreDatabaseReference.collection("expenses")
             .whereEqualTo("day", mDay)
             .whereEqualTo("month", (mMonth!! + 1))
             .whereEqualTo("year", mYear!!)

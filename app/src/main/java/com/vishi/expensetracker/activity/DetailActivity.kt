@@ -9,13 +9,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ListenerRegistration
-import com.google.firebase.ktx.Firebase
 import com.vishi.expensetracker.R
 import com.vishi.expensetracker.model.ExpenseDetails
+import com.vishi.expensetracker.utility.FireStoreUtil
 import java.text.SimpleDateFormat
 
 import java.util.*
@@ -54,7 +53,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var monthExpenseCard: CardView
     private lateinit var yearExpenseCard: CardView
 
-    val databaseReference: FirebaseFirestore = FirebaseFirestore.getInstance()
+    private lateinit var mFireStoreDatabaseReference: FirebaseFirestore
     private lateinit var dbListener: ListenerRegistration
     private var expenseList: MutableList<ExpenseDetails> = mutableListOf()
 
@@ -62,15 +61,18 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        FireStoreUtil.onFireStoreReference()
+        mFireStoreDatabaseReference = FireStoreUtil.mFireStoreDatabaseReference!!
+
         mCal = Calendar.getInstance()
         mYear = mCal!!.get(Calendar.YEAR)
         mMonth = mCal!!.get(Calendar.MONTH)
         mDay = mCal!!.get(Calendar.DAY_OF_MONTH)
 
         val cal = Calendar.getInstance()
-        val month_date = SimpleDateFormat("MMMM")
+        val monthDate = SimpleDateFormat("MMMM")
         cal.set(Calendar.MONTH, mMonth!!)
-        mMonthName = month_date.format(cal.time)
+        mMonthName = monthDate.format(cal.time)
 
         val yesCal = yesterday()
         mYestYear = yesCal.get(Calendar.YEAR)
@@ -78,7 +80,7 @@ class DetailActivity : AppCompatActivity() {
         mYestDay = yesCal.get(Calendar.DAY_OF_MONTH)
 
         cal.set(Calendar.MONTH, mYestMonth!!)
-        mYestMonthName = month_date.format(cal.time)
+        mYestMonthName = monthDate.format(cal.time)
 
         yesterdayExpenseCard = findViewById(R.id.yesterdayExpensesCardId)
         monthExpenseCard = findViewById(R.id.monthExpensesCardId)
@@ -168,9 +170,10 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun getExpensesDetails() {
-        val uid = Firebase.auth.currentUser!!.uid
+        FireStoreUtil.setFireStoreUserId()
+        val uid = FireStoreUtil.mFireStoreCurrentUserId
 
-        dbListener = databaseReference.collection("expenses")
+        dbListener = mFireStoreDatabaseReference.collection("expenses")
             .whereEqualTo("addedBy", uid)
             .addSnapshotListener { querySnapshot, firebaseFirestoreException ->
                 if (firebaseFirestoreException != null) {
