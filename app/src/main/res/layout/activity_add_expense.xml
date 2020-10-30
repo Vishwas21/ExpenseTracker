@@ -4,137 +4,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorWhite"
+    android:background="@drawable/add_expense_popup_background"
     tools:context=".activity.AddExpenseActivity">
 
-    <View
-        android:id="@+id/idView"
-        android:layout_width="0dp"
-        android:layout_height="112dp"
-        android:background="@drawable/add_view_round_corners"
+    <TextView
+        android:id="@+id/titleTextViewId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/alex_brush"
+        android:gravity="center_vertical"
+        android:text="@string/add_string"
+        android:textColor="@color/colorWhite"
+        android:textSize="32sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:gravity="center_vertical"
-        android:text="@string/add_string"
-        android:textColor="@color/colorWhite"
-        android:textSize="28sp"
-        android:textStyle="italic|bold"
-        app:layout_constraintBottom_toBottomOf="@+id/idView"
-        app:layout_constraintEnd_toEndOf="@+id/idView"
-        app:layout_constraintStart_toStartOf="@+id/idView" />
-
-    <TextView
-        android:id="@+id/textView_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/Label_Amount"
-        android:textAlignment="center"
-        android:textColor="@color/colorBlack"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idView" />
-
-    <EditText
-        android:id="@+id/editText_Amount"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/amountSpentTextInputLayoutId"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/text_view_border"
-        android:ems="10"
-        android:hint="@string/hint_enter_amount_spent"
-        android:inputType="number"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_amount"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView_amount"
-        app:layout_constraintTop_toTopOf="@+id/textView_amount" />
-
-    <TextView
-        android:id="@+id/textView_date"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="24dp"
-        android:text="@string/label_date"
-        android:textAlignment="center"
-        android:textColor="@color/colorBlack"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView_amount"
-        app:layout_constraintStart_toStartOf="@+id/textView_amount"
-        app:layout_constraintTop_toBottomOf="@+id/textView_amount" />
-
-    <EditText
-        android:id="@+id/editText_Date"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/text_view_border"
-        android:ems="10"
-        android:focusable="false"
-        android:hint="@string/hint_select_date"
-        android:inputType="date"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView_date"
-        app:layout_constraintEnd_toEndOf="@+id/editText_Amount"
-        app:layout_constraintStart_toStartOf="@+id/editText_Amount"
-        app:layout_constraintTop_toTopOf="@+id/textView_date" />
-
-    <TextView
-        android:id="@+id/textView_description"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/label_description"
-        android:textAlignment="center"
-        android:textColor="@color/colorBlack"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:textColorHint="@color/colorWhite"
+        app:boxStrokeColor="@color/colorWhite"
+        app:boxStrokeWidth="2dp"
+        app:hintTextColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_date" />
+        app:layout_constraintTop_toBottomOf="@+id/titleTextViewId">
 
-    <EditText
-        android:id="@+id/editText_Description"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/amountTextInputEditTextId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:hint="@string/hint_enter_amount_spent"
+            android:inputType="number"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dateTextInputLayoutId"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="112dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:background="@drawable/text_view_border"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="@string/hint_description"
-        android:inputType="textMultiLine|textCapSentences"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/textView_description"
-        app:layout_constraintStart_toStartOf="@+id/textView_description"
-        app:layout_constraintTop_toBottomOf="@+id/textView_description" />
+        android:textColorHint="@color/colorWhite"
+        app:boxStrokeColor="@color/colorWhite"
+        app:boxStrokeWidth="2dp"
+        app:hintTextColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="@+id/amountSpentTextInputLayoutId"
+        app:layout_constraintStart_toStartOf="@+id/amountSpentTextInputLayoutId"
+        app:layout_constraintTop_toBottomOf="@+id/amountSpentTextInputLayoutId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateTextInputEditTextId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:clickable="true"
+            android:focusable="false"
+            android:hint="@string/hint_select_date"
+            android:inputType="date"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionTextInputLayoutId"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColorHint="@color/colorWhite"
+        app:boxStrokeColor="@color/colorWhite"
+        app:boxStrokeWidth="2dp"
+        app:hintTextColor="@color/colorWhite"
+        app:layout_constraintEnd_toEndOf="@+id/dateTextInputLayoutId"
+        app:layout_constraintStart_toStartOf="@+id/dateTextInputLayoutId"
+        app:layout_constraintTop_toBottomOf="@+id/dateTextInputLayoutId">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_Description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|top"
+            android:hint="@string/hint_description"
+            android:inputType="textMultiLine|textCapSentences"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button_Save"
+        android:id="@+id/saveButtonId"
+        style="@style/Widget.MaterialComponents.Button"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/round_corner_button"
         android:text="@string/button_label_save"
+        android:textAllCaps="false"
         android:textColor="@color/colorWhite"
         android:textSize="18sp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_Description" />
+        app:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionTextInputLayoutId"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTextInputLayoutId" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

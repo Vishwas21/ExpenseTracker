@@ -134,23 +134,23 @@ class DetailActivity : AppCompatActivity() {
             }
         }
 
-        monthExpenseCard.setOnClickListener {
-            if (mMonthTotal != 0.0) {
-                val view = Intent(this@DetailActivity, ViewActivity::class.java)
-                startActivity(view)
-            } else {
-                Toast.makeText(this@DetailActivity, "No Expense to View", Toast.LENGTH_LONG).show()
-            }
-        }
+//        monthExpenseCard.setOnClickListener {
+//            if (mMonthTotal != 0.0) {
+//                val view = Intent(this@DetailActivity, ViewActivity::class.java)
+//                startActivity(view)
+//            } else {
+//                Toast.makeText(this@DetailActivity, "No Expense to View", Toast.LENGTH_LONG).show()
+//            }
+//        }
 
-        yearExpenseCard.setOnClickListener {
-            if (mYearTotal != 0.0) {
-                val view = Intent(this@DetailActivity, ViewActivity::class.java)
-                startActivity(view)
-            } else {
-                Toast.makeText(this@DetailActivity, "No Expense to View", Toast.LENGTH_LONG).show()
-            }
-        }
+//        yearExpenseCard.setOnClickListener {
+//            if (mYearTotal != 0.0) {
+//                val view = Intent(this@DetailActivity, ViewActivity::class.java)
+//                startActivity(view)
+//            } else {
+//                Toast.makeText(this@DetailActivity, "No Expense to View", Toast.LENGTH_LONG).show()
+//            }
+//        }
 
         updateViews()
     }

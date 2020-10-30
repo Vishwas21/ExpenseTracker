@@ -2,13 +2,10 @@
     <string name="app_name">Expense Tracker</string>
     <string name="action_settings">Settings</string>
     <string name="add_string">Add Expense</string>
-    <string name="Label_Amount">Amount :</string>
-    <string name="hint_enter_amount_spent">Enter Amount Spent</string>
-    <string name="label_date">Date :</string>
-    <string name="hint_select_date">Select Date</string>
-    <string name="label_description">Description :</string>
-    <string name="hint_description">Enter description</string>
-    <string name="button_label_save">Add Expense</string>
+    <string name="hint_enter_amount_spent">   Amount Spent</string>
+    <string name="hint_select_date">Date</string>
+    <string name="hint_description">Description</string>
+    <string name="button_label_save">Save</string>
 
     <string name="title_activity_login">Sign in</string>
     <string name="prompt_username">Username</string>
