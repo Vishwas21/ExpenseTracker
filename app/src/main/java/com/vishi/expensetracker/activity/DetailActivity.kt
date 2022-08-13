@@ -194,7 +194,8 @@ class DetailActivity : AppCompatActivity() {
                             }
 
                             DocumentChange.Type.MODIFIED -> {
-                                val modifiedExpense = dc.document.toObject(ExpenseDetails::class.java)
+                                val modifiedExpense =
+                                    dc.document.toObject(ExpenseDetails::class.java)
                                 modifiedExpense.id = dc.document.id
 
                                 updateExpense(modifiedExpense)
@@ -203,7 +204,8 @@ class DetailActivity : AppCompatActivity() {
                             }
 
                             DocumentChange.Type.REMOVED -> {
-                                val deletedExpense = dc.document.toObject(ExpenseDetails::class.java)
+                                val deletedExpense =
+                                    dc.document.toObject(ExpenseDetails::class.java)
                                 deletedExpense.id = dc.document.id
 
                                 deleteExpense(deletedExpense)
@@ -246,14 +248,11 @@ class DetailActivity : AppCompatActivity() {
 
         if (mYestDay!! >= 11 && mYestDay!! <= 20) {
             suffix = "th"
-        }
-        else if (mYestDay!! % 10 == 1) {
+        } else if (mYestDay!! % 10 == 1) {
             suffix = "st"
-        }
-        else if (mYestDay!! % 10 == 2) {
+        } else if (mYestDay!! % 10 == 2) {
             suffix = "nd"
-        }
-        else if (mYestDay!! % 10 == 3) {
+        } else if (mYestDay!! % 10 == 3) {
             suffix = "rd"
         } else {
             suffix = "th"
@@ -290,14 +289,14 @@ class DetailActivity : AppCompatActivity() {
         totalYearExpense.text = "\u20B9" + String.format(Locale.ENGLISH, "%.2f", mYearTotal)
         yearNumberLabel.text = mYear!!.toString()
 
-        if (mYearTotal <= 150000) {
+        if (mYearTotal / 12 <= 15000) {
             totalYearExpense.setTextColor(
                 ContextCompat.getColor(
                     this@DetailActivity,
                     R.color.colorSafeGreen
                 )
             )
-        } else if (mYearTotal / 12 <= 250000) {
+        } else if (mYearTotal / 12 <= 25000) {
             totalYearExpense.setTextColor(
                 ContextCompat.getColor(
                     this@DetailActivity,
@@ -352,7 +351,8 @@ class DetailActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == ADD_EXPENSE_REQUEST) {
             if (resultCode == Activity.RESULT_OK) {
-                Toast.makeText(this@DetailActivity, "Expense Added Successfully", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@DetailActivity, "Expense Added Successfully", Toast.LENGTH_LONG)
+                    .show()
             }
         }
     }

@@ -53,18 +53,24 @@ class LoginActivity : AppCompatActivity() {
             txtPassword = password.text.toString()
 
             if (txtUsername.isEmpty()) {
-                Toast.makeText(this@LoginActivity, "Please enter a valid email id!", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Please enter a valid email id!",
+                    Toast.LENGTH_LONG
+                ).show()
                 login.text = getString(R.string.action_log_in)
                 login.isEnabled = true
                 progressBar.visibility = View.INVISIBLE
-            }
-            else if (txtPassword.isEmpty()) {
-                Toast.makeText(this@LoginActivity, "Please enter a valid password!", Toast.LENGTH_LONG).show()
+            } else if (txtPassword.isEmpty()) {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Please enter a valid password!",
+                    Toast.LENGTH_LONG
+                ).show()
                 login.text = getString(R.string.action_log_in)
                 login.isEnabled = true
                 progressBar.visibility = View.INVISIBLE
-            }
-            else {
+            } else {
                 loginToFirebase()
             }
         }
@@ -81,14 +87,15 @@ class LoginActivity : AppCompatActivity() {
                     Paper.book().write("username", txtUsername)
                     Paper.book().write("password", txtPassword)
 
-                    Toast.makeText(this@LoginActivity, "Login Successfull", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginActivity, "Login Successfull", Toast.LENGTH_LONG)
+                        .show()
                     val intent = Intent(this@LoginActivity, DetailActivity::class.java)
                     startActivity(intent)
                     finish()
-                }
-                else {
+                } else {
                     password.setText("")
-                    Toast.makeText(this@LoginActivity, "Login Unsuccessfull", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@LoginActivity, "Login Unsuccessfull", Toast.LENGTH_LONG)
+                        .show()
                     login.text = getString(R.string.action_log_in)
                     login.isEnabled = true
                     progressBar.visibility = View.INVISIBLE

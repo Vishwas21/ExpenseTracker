@@ -50,9 +50,9 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="24dp"
+        android:textColorHint="@color/colorDarkGrey"
         app:boxStrokeColor="@color/colorLoginBlue"
         app:hintTextColor="@color/colorLoginBlue"
-        android:textColorHint="@color/colorDarkGrey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/labelTextViewId">
@@ -67,6 +67,8 @@
             android:hint="@string/prompt_username"
             android:inputType="textEmailAddress"
             android:selectAllOnFocus="true"
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorDarkGrey"
             android:textStyle="bold" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -77,13 +79,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textColorHint="@color/colorDarkGrey"
         app:boxStrokeColor="@color/colorLoginBlue"
         app:hintTextColor="@color/colorLoginBlue"
-        android:textColorHint="@color/colorDarkGrey"
         app:layout_constraintEnd_toEndOf="@+id/usernameTextInputLayoutId"
         app:layout_constraintStart_toStartOf="@+id/usernameTextInputLayoutId"
         app:layout_constraintTop_toBottomOf="@+id/usernameTextInputLayoutId"
-        app:passwordToggleEnabled="true">
+        app:passwordToggleEnabled="true"
+        app:passwordToggleTint="@color/colorDarkGrey">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordTextInputEditTextId"
@@ -98,8 +101,9 @@
             android:includeFontPadding="true"
             android:inputType="textPassword"
             android:selectAllOnFocus="true"
-            android:textStyle="bold"
-            android:textColorHint="@color/colorGrey" />
+            android:textColor="@color/colorBlack"
+            android:textColorHint="@color/colorGrey"
+            android:textStyle="bold" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
